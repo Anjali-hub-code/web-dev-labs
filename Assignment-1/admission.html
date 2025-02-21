@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admission Form</title>
+</head>
+<body>
+
+    <h1>College Admission Form</h1>
+
+    <form action="submit_form.php" method="post">
+
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br><br>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        <br><br>
+
+        <label>Gender:</label>
+        <input type="radio" id="male" name="gender" value="Male" required> <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female" required> <label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="Other" required> <label for="other">Other</label>
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br><br>
+
+        <label for="phone">Mobile Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="3" cols="40" required></textarea>
+        <br><br>
+
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required>
+        <br><br>
+
+        <label for="pincode">Pin Code:</label>
+        <input type="number" id="pincode" name="pincode" required>
+        <br><br>
+
+        <label for="course">Select Course:</label>
+        <select id="course" name="course" required>
+            <option value="">-- Select Course --</option>
+            <option value="Computer Science">B.Tech - Computer Science</option>
+            <option value="Electronics">B.Tech - Electronics</option>
+            <option value="Mechanical">B.Tech - Mechanical</option>
+            <option value="Civil">B.Tech - Civil</option>
+            <option value="Electrical">B.Tech - Electrical</option>
+        </select>
+        <br><br>
+
+        <label for="photo">Upload Passport-size Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
+        <br><br>
+
+        <label for="sign">Upload Signature:</label>
+        <input type="file" id="sign" name="sign" accept="image/*" required>
+        <br><br>
+
+        <label for="marksheet">Upload 12th Marksheet:</label>
+        <input type="file" id="marksheet" name="marksheet" accept="application/pdf,image/*" required>
+        <br><br>
+
+        <label for="declaration">
+            <input type="checkbox" id="declaration" name="declaration" required>
+            I hereby declare that the above information is correct.
+        </label>
+        <br><br>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+
+    </form>
+
+</body>
+</html>

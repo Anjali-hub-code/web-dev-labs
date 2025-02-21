@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - XYZ College</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>College Gallery</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Our Campus & Events</h2>
+        <div class="gallery">
+            <img src="images/college_building.jpg" alt="College Building">
+            <img src="images/library.jpg" alt="Library">
+            <img src="images/sports_ground.jpg" alt="Sports Ground">
+            <img src="images/cultural_event.jpg" alt="Cultural Event">
+            <img src="images/students_in_class.jpg" alt="Students in Class">
+            <img src="images/graduation_ceremony.jpg" alt="Graduation Ceremony">
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 XYZ College. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

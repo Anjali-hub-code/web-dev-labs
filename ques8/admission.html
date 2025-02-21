@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission - XYZ College</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admission Form</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="academics.html">Academics</a></li>
+            <li><a href="admission.html">Admission</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h2>Student Admission Form</h2>
+        <form action="submit_admission.php" method="post" enctype="multipart/form-data">
+            <p>Full Name: <input type="text" name="fullname" required></p>
+            <p>Email: <input type="email" name="email" required></p>
+            <p>Phone Number: <input type="tel" name="phone" required></p>
+            <p>Address: <textarea name="address" rows="3"></textarea></p>
+            
+            <p>Select Department:
+                <select name="department">
+                    <option value="arts">Arts</option>
+                    <option value="science">Science</option>
+                    <option value="commerce">Commerce</option>
+                </select>
+            </p>
+
+            <p>Date of Birth: <input type="date" name="dob" required></p>
+
+            <p>Gender:
+                <input type="radio" name="gender" value="male" required> Male
+                <input type="radio" name="gender" value="female"> Female
+                <input type="radio" name="gender" value="other"> Other
+            </p>
+
+            <p>Upload Photo: <input type="file" name="photo" accept="image/*" required></p>
+
+            <p><input type="submit" value="Submit Admission Form">
+               <input type="reset" value="Reset">
+            </p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 XYZ College. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

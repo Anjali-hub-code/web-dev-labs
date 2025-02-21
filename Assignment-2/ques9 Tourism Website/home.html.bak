@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourism in Indore</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('bgimg1.jpg'); 
+            background-size: cover;
+            color: white;
+            text-align: center;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Indore Tourism</h1>
+        <img src="logo.png" alt="City Logo" width="100">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="heritage.html">Heritage</a>
+            <a href="hotel-booking.html">Hotel Booking</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h2>Explore the Beautiful City of Indore</h2>
+        <p>Indore is known for its rich cultural heritage, historical landmarks, and breathtaking landscapes. Explore our website to learn more about the top heritage sites, book your stay, and browse through an amazing gallery of images capturing the beauty of our city.</p>
+    </div>
+</body>
+</html>

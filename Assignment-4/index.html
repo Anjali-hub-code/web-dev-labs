@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignment 4</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .error { color: red; font-size: 0.9em; }
+        .todo-item { margin: 5px 0; padding: 5px; background: #f0f0f0; }
+        .completed { text-decoration: line-through; }
+        #chatMessages { height: 200px; overflow-y: auto; border: 1px solid #ccc; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- BMI Calculator -->
+        <div class="section">
+            <h2>BMI Calculator</h2>
+            <input type="number" id="weight" placeholder="Weight (kg)">
+            <input type="number" id="height" placeholder="Height (m)">
+            <button onclick="calculateBMI()">Calculate</button>
+            <p id="bmiResult"></p>
+        </div>
+
+        <!-- Temperature Converter -->
+        <div class="section">
+            <h2>Temperature Converter</h2>
+            <input type="number" id="temp" placeholder="Temperature">
+            <select id="tempType">
+                <option value="c">Celsius</option>
+                <option value="f">Fahrenheit</option>
+            </select>
+            <button onclick="convertTemp()">Convert</button>
+            <p id="tempResult"></p>
+        </div>
+
+        <!-- Pop-up Boxes Demo -->
+        <div class="section">
+            <h2>Pop-up Boxes</h2>
+            <button onclick="showAlert()">Show Alert</button>
+            <button onclick="showConfirm()">Show Confirm</button>
+            <button onclick="showPrompt()">Show Prompt</button>
+            <p id="promptResult"></p>
+        </div>
+
+        <!-- Dynamic List -->
+        <div class="section">
+            <h2>Dynamic List</h2>
+            <input type="text" id="listInput" placeholder="Enter item">
+            <button onclick="addItem()">Add Item</button>
+            <ul id="dynamicList"></ul>
+        </div>
+
+        <!-- Form Validation -->
+        <div class="section">
+            <h2>Registration Form</h2>
+            <form id="regForm" onsubmit="return validateForm(event)">
+                <input type="text" id="name" placeholder="Name"><br>
+                <span class="error" id="nameError"></span><br>
+                <input type="email" id="email" placeholder="Email"><br>
+                <span class="error" id="emailError"></span><br>
+                <input type="tel" id="phone" placeholder="Phone"><br>
+                <span class="error" id="phoneError"></span><br>
+                <input type="password" id="password" placeholder="Password"><br>
+                <span class="error" id="passwordError"></span><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <!-- Date and Random Number -->
+        <div class="section">
+            <h2>Date & Random</h2>
+            <p id="currentDate"></p>
+            <button onclick="generateRandom()">Generate Random Number</button>
+            <p id="randomResult"></p>
+        </div>
+
+        <!-- Weather API -->
+        <div class="section">
+            <h2>Weather</h2>
+            <input type="text" id="city" placeholder="Enter city">
+            <button onclick="getWeather()">Get Weather</button>
+            <p id="weatherResult"></p>
+        </div>
+
+        <!-- To-Do List -->
+        <div class="section">
+            <h2>To-Do List</h2>
+            <input type="text" id="todoInput" placeholder="New task">
+            <button onclick="addTodo()">Add Task</button>
+            <div id="todoList"></div>
+        </div>
+
+        <!-- Chatbot -->
+        <div class="section">
+            <h2>Simple Chatbot</h2>
+            <div id="chatMessages"></div>
+            <input type="text" id="chatInput" placeholder="Type message">
+            <button onclick="sendChat()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        // A. Variables, Functions, Conditions, Loops
+        function calculateBMI() {
+            const weight = document.getElementById('weight').value;
+            const height = document.getElementById('height').value;
+            if (weight > 0 && height > 0) {
+                const bmi = (weight / (height * height)).toFixed(2);
+                document.getElementById('bmiResult').textContent = `BMI: ${bmi}`;
+            } else {
+                alert('Please enter valid values');
+            }
+        }
+
+        function convertTemp() {
+            const temp = document.getElementById('temp').value;
+            const type = document.getElementById('tempType').value;
+            let result;
+            switch(type) {
+                case 'c':
+                    result = (temp * 9/5) + 32;
+                    document.getElementById('tempResult').textContent = `${result.toFixed(1)}°F`;
+                    break;
+                case 'f':
+                    result = (temp - 32) * 5/9;
+                    document.getElementById('tempResult').textContent = `${result.toFixed(1)}°C`;
+                    break;
+            }
+        }
+
+        // B. Pop-up Boxes
+        function showAlert() { alert('This is an alert box!'); }
+        function showConfirm() {
+            if (confirm('Are you sure?')) {
+                alert('Confirmed!');
+            }
+        }
+        function showPrompt() {
+            const name = prompt('Enter your name:');
+            if (name) document.getElementById('promptResult').textContent = `Hello, ${name}!`;
+        }
+
+        // C. Event Handling & DOM Manipulation
+        let items = [];
+        function addItem() {
+            const input = document.getElementById('listInput');
+            if (input.value) {
+                items.push(input.value);
+                const ul = document.getElementById('dynamicList');
+                ul.innerHTML = '';
+                for (let i = 0; i < items.length; i++) {
+                    const li = document.createElement('li');
+                    li.textContent = items[i];
+                    li.onmouseover = () => li.style.backgroundColor = '#ddd';
+                    li.onmouseout = () => li.style.backgroundColor = '';
+                    li.onclick = () => { if (confirm('Delete item?')) { items.splice(i, 1); addItem(); } };
+                    ul.appendChild(li);
+                }
+                input.value = '';
+            }
+        }
+
+        // D. Forms & Validation
+        function validateForm(event) {
+            event.preventDefault();
+            let isValid = true;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+            document.querySelectorAll('.error').forEach(e => e.textContent = '');
+
+            if (!name) {
+                document.getElementById('nameError').textContent = 'Name is required';
+                isValid = false;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Invalid email format';
+                isValid = false;
+            }
+
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').textContent = 'Enter 10-digit phone number';
+                isValid = false;
+            }
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('passwordError').textContent = 'Password must be 8+ chars with upper, lower, number, special';
+                isValid = false;
+            }
+
+            if (isValid) alert('Form submitted successfully!');
+            return isValid;
+        }
+
+        // E. JavaScript Objects & AJAX
+        function updateDate() {
+            const date = new Date();
+            document.getElementById('currentDate').textContent = date.toLocaleString();
+        }
+        setInterval(updateDate, 1000);
+
+        function generateRandom() {
+            const random = Math.floor(Math.random() * 100);
+            document.getElementById('randomResult').textContent = `Random Number: ${random}`;
+        }
+
+        function getWeather() {
+            const city = document.getElementById('city').value;
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0a09cce08c48b24f7a5c81ead08b0faf&units=metric`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod === 200) {
+                        document.getElementById('weatherResult').textContent = 
+                            `Weather in ${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
+                    } else {
+                        throw new Error(data.message);
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('weatherResult').textContent = `Error: ${error.message}`;
+                });
+        }
+
+        // To-Do List
+        let todos = [];
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            if (input.value) {
+                todos.push({ text: input.value, completed: false });
+                renderTodos();
+                input.value = '';
+            }
+        }
+
+        function renderTodos() {
+            const list = document.getElementById('todoList');
+            list.innerHTML = '';
+            todos.forEach((todo, index) => {
+                const div = document.createElement('div');
+                div.className = 'todo-item' + (todo.completed ? ' completed' : '');
+                div.innerHTML = `
+                    <input type="checkbox" ${todo.completed ? 'checked' : ''} 
+                        onchange="todos[${index}].completed = !todos[${index}].completed; renderTodos()">
+                    <span>${todo.text}</span>
+                    <button onclick="todos.splice(${index}, 1); renderTodos()">Delete</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+
+        // Chatbot
+        const responses = {
+            'hello': 'Hi there!',
+            'how are you': 'I\'m doing great, thanks for asking!',
+            'bye': 'Goodbye!'
+        };
+        function sendChat() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            if (input.value) {
+                const userMsg = document.createElement('p');
+                userMsg.textContent = `You: ${input.value}`;
+                messages.appendChild(userMsg);
+
+                const reply = responses[input.value.toLowerCase()] || 'I don\'t understand that.';
+                const botMsg = document.createElement('p');
+                botMsg.textContent = `Bot: ${reply}`;
+                messages.appendChild(botMsg);
+
+                messages.scrollTop = messages.scrollHeight;
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
